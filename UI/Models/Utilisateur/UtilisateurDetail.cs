@@ -1,19 +1,20 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace UI.Models.Utilisateur
 {
-	public class UtilisateurListItem
+	public class UtilisateurDetail
 	{
 		[ScaffoldColumn(false)]
 		public Guid UtilisateurId { get; set; }
 
-		[Display(Name = "Email")]
+		[DisplayName("Email")]
 		public string Email { get; set; }
 
-		[Display(Name = "Pseudo")]
+		[DisplayName("Pseudo")]
 		public string Pseudo { get; set; }
 
-		[Display(Name = "Date de création")]
+		[DisplayName("Date de création")]
 		[DataType(DataType.Date)]
 		public DateTime DateCreation { get; set; }
 	}

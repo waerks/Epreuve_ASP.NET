@@ -30,9 +30,16 @@ namespace UI.Controllers
 		}
 
 		// GET: UtilisateurController/Details/5
-		public ActionResult Details(int id)
+		public ActionResult Details(Guid id)
 		{
-			return View();
+			try
+			{
+				UtilisateurDetail model = _utilisateurService.Get(id).ToDetail();
+				return View(model);
+			} catch
+			{
+				return RedirectToAction("Error", "Home");
+			}
 		}
 
 		// GET: UtilisateurController/Create

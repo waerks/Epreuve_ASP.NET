@@ -15,5 +15,19 @@ namespace UI.Mappers
 				DateCreation = utilisateur.DateCreation
 			};
 		}
+
+		// Détail d'un Utilisateur
+		public static UtilisateurDetail ToDetail(this Utilisateur utilisateur)
+		{
+			if (utilisateur is null) throw new ArgumentOutOfRangeException(nameof(utilisateur));
+
+			return new UtilisateurDetail
+			{
+				UtilisateurId = utilisateur.UtilisateurId,
+				Email = utilisateur.Email,
+				Pseudo = utilisateur.Pseudo,
+				DateCreation = utilisateur.DateCreation
+			};
+		}
 	}
 }

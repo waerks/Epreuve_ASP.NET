@@ -1,0 +1,25 @@
+﻿@model UI.Models.Utilisateur.UtilisateurDetail
+
+@{
+	ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+	<h4>Utilisateur</h4>
+	<hr />
+	<dl class="row">
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Email)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Email)
+		</dd>
+		<dt class="col-sm-2">
+			@Html.DisplayNameFor(model => model.Pseudo)
+		</dt>
+		<dd class="col-sm-10">
+			@Html.DisplayFor(model => model.Pseudo)
+		</dd>
+	</dl>
