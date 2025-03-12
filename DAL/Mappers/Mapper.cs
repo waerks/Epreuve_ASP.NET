@@ -10,6 +10,7 @@ namespace DAL.Mappers
 {
 	internal static class Mapper
 	{
+		// Utilisateur
 		public static Utilisateur ToUtilisateur(this IDataRecord record)
 		{
 			if (record is null) throw new ArgumentNullException(nameof(record));
@@ -24,6 +25,7 @@ namespace DAL.Mappers
 			};
 		}
 
+		// Jeu
 		public static Jeu ToJeu(this IDataRecord record)
 		{
 			if (record is null) throw new ArgumentNullException(nameof(record));
@@ -42,6 +44,7 @@ namespace DAL.Mappers
 			};
 		}
 
+		// Posseder
 		public static Posseder ToPosseder(this IDataRecord record)
 		{
 			if (record is null) throw new ArgumentNullException(nameof(record));
@@ -53,6 +56,7 @@ namespace DAL.Mappers
 			};
 		}
 
+		// Emprunt
 		public static Emprunt ToEmprunt(this IDataRecord record)
 		{
 			if (record is null) throw new ArgumentNullException(nameof(record));
@@ -69,6 +73,7 @@ namespace DAL.Mappers
 			};
 		}
 
+		// Tag
 		public static Tag ToTag(this IDataRecord record)
 		{
 			if (record is null) throw new ArgumentNullException(nameof(record));
@@ -79,6 +84,7 @@ namespace DAL.Mappers
 			};
 		}
 
+		// JeuTag
 		public static JeuTag ToJeuTag(this IDataRecord record)
 		{
 			if (record is null) throw new ArgumentNullException(nameof(record));
