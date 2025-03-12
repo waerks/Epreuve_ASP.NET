@@ -64,8 +64,13 @@
     <Build Include="Tables\Tag.sql" />
     <Build Include="Tables\Emprunt.sql" />
     <Build Include="Tables\Jeu.sql" />
+    <Build Include="Tables\Posseder.sql" />
+    <Build Include="Tables\JeuTag.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment.Main.sql" />
   </ItemGroup>
 </Project>

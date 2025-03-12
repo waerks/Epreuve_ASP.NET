@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[JeuTag]
+(
+	[JeuId] INT NOT NULL,
+	Tag VARCHAR(50) NOT NULL,
+	PRIMARY KEY (JeuId, Tag),
+	FOREIGN KEY (JeuId) REFERENCES Jeu(JeuId),
+	FOREIGN KEY (Tag) REFERENCES Tag(Tag)
+)
