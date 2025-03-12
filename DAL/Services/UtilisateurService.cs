@@ -1,4 +1,5 @@
 ﻿using DAL.Entities;
+using DAL.Mappers;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
@@ -39,6 +40,116 @@ namespace DAL.Services
 							yield return result;
 						}
 					}
+				}
+			}
+		}
+
+		// Obtenir tous les ID Utilisateurs
+		public Utilisateur Get(Guid UtilisateurId)
+		{
+			using (SqlConnection connection = new SqlConnection(ConnectionString))
+			{
+				using (SqlCommand command = connection.CreateCommand())
+				{
+					command.CommandText = "SP_Utilisateur_GetByID";
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.Parameters.AddWithValue(nameof(UtilisateurId), UtilisateurId);
+
+					connection.Open();
+
+					using (SqlDataReader reader = command.ExecuteReader())
+					{
+						if (reader.Read())
+						{
+							return reader.ToUtilisateur();
+						} else
+						{
+							throw new ArgumentOutOfRangeException(nameof(UtilisateurId));
+						}
+					}
+				}
+			}
+		}
+
+		// Insérer les Utilisateurs
+		public Guid Insert(Utilisateur utilisateur)
+		{
+			using (SqlConnection connection = new SqlConnection(ConnectionString))
+			{
+				using (SqlCommand command = connection.CreateCommand())
+				{
+					command.CommandText = "SP_Utilisateur_Insert";
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+
+					command.Parameters.AddWithValue(nameof(Utilisateur.Email), utilisateur.Email);
+					command.Parameters.AddWithValue(nameof(Utilisateur.MotDePasse), utilisateur.MotDePasse);
+					command.Parameters.AddWithValue(nameof(Utilisateur.Pseudo), utilisateur.Pseudo);
+					command.Parameters.AddWithValue(nameof(Utilisateur.DateCreation), utilisateur.DateCreation);
+					command.Parameters.AddWithValue(nameof(Utilisateur.DateDesactivation), utilisateur.DateDesactivation);
+
+					connection.Open();
+					return (Guid)command.ExecuteScalar();
+				}
+			}
+		}
+
+		// Update les Utilisateurs
+		public void Update(Guid UtilisateurId, Utilisateur utilisateur)
+		{
+			using (SqlConnection connection = new SqlConnection(ConnectionString))
+			{
+				using (SqlCommand command = connection.CreateCommand())
+				{
+					command.CommandText = "SP_Utilisateur_Update";
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+
+					command.Parameters.AddWithValue(nameof(UtilisateurId), UtilisateurId);
+
+					command.Parameters.AddWithValue(nameof(Utilisateur.Email), utilisateur.Email);
+					command.Parameters.AddWithValue(nameof(Utilisateur.MotDePasse), utilisateur.MotDePasse);
+					command.Parameters.AddWithValue(nameof(Utilisateur.Pseudo), utilisateur.Pseudo);
+					command.Parameters.AddWithValue(nameof(Utilisateur.DateCreation), utilisateur.DateCreation);
+					command.Parameters.AddWithValue(nameof(Utilisateur.DateDesactivation), utilisateur.DateDesactivation);
+
+					connection.Open();
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		// Delete les Utilisateurs
+		public void Delete(Guid UtilisateurId)
+		{
+			using (SqlConnection connection = new SqlConnection(ConnectionString))
+			{
+				using (SqlCommand command = connection.CreateCommand())
+				{
+					command.CommandText = "SP_Utilisateur_Delete";
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+
+					command.Parameters.AddWithValue(nameof(UtilisateurId), UtilisateurId);
+
+					connection.Open();
+					command.ExecuteNonQuery();
+				}
+			}
+		}
+
+		// Update les Utilisateurs
+		public Guid CheckPassword(string Email, string MotDePasse)
+		{
+			using (SqlConnection connection = new SqlConnection(ConnectionString))
+			{
+				using (SqlCommand command = connection.CreateCommand())
+				{
+					command.CommandText = "SP_Utilisateur_CheckPassword";
+					command.CommandType = System.Data.CommandType.StoredProcedure;
+
+					command.Parameters.AddWithValue(nameof(Email), Email);
+					command.Parameters.AddWithValue(nameof(MotDePasse), MotDePasse);
+
+					connection.Open();
+					return (Guid)command.ExecuteScalar();
 				}
 			}
 		}
