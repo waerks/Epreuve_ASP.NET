@@ -2,7 +2,7 @@
 (
 	[JeuId] INT IDENTITY(1,1) PRIMARY KEY,
 	[Nom] VARCHAR(255) NOT NULL,
-	[Deescription] TEXT NOT NULL,
+	[Description] TEXT NOT NULL,
 	[AgeMin] INT NOT NULL,
 	[AgeMax] INT NOT NULL,
 	[NbJoueurMin] INT NOT NULL,

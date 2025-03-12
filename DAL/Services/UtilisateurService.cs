@@ -3,6 +3,7 @@ using DAL.Mappers;
 using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace DAL.Services
 {
 	public class UtilisateurService
 	{
-		private const string ConnectionString = @"Data Source=(localDB)\MSSQLlocalDB;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Command Timeout=0";
+		private const string ConnectionString = @"Data Source=(localDB)\MSSQLlocalDB;Initial Catalog=Epreuve-DB;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Command Timeout=0";
 
 		// Obtenir tous les Utilisateurs
 		public IEnumerable<Utilisateur> Get()
@@ -21,7 +22,7 @@ namespace DAL.Services
 				using (SqlCommand command = connection.CreateCommand())
 				{
 					command.CommandText = "SP_Utilisateur_GetAllActive";
-					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.CommandType = CommandType.StoredProcedure;
 					connection.Open();
 
 					using (SqlDataReader reader = command.ExecuteReader())
@@ -52,7 +53,7 @@ namespace DAL.Services
 				using (SqlCommand command = connection.CreateCommand())
 				{
 					command.CommandText = "SP_Utilisateur_GetByID";
-					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.CommandType = CommandType.StoredProcedure;
 					command.Parameters.AddWithValue(nameof(UtilisateurId), UtilisateurId);
 
 					connection.Open();
@@ -79,7 +80,7 @@ namespace DAL.Services
 				using (SqlCommand command = connection.CreateCommand())
 				{
 					command.CommandText = "SP_Utilisateur_Insert";
-					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.CommandType = CommandType.StoredProcedure;
 
 					command.Parameters.AddWithValue(nameof(Utilisateur.Email), utilisateur.Email);
 					command.Parameters.AddWithValue(nameof(Utilisateur.MotDePasse), utilisateur.MotDePasse);
@@ -101,7 +102,7 @@ namespace DAL.Services
 				using (SqlCommand command = connection.CreateCommand())
 				{
 					command.CommandText = "SP_Utilisateur_Update";
-					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.CommandType = CommandType.StoredProcedure;
 
 					command.Parameters.AddWithValue(nameof(UtilisateurId), UtilisateurId);
 
@@ -125,7 +126,7 @@ namespace DAL.Services
 				using (SqlCommand command = connection.CreateCommand())
 				{
 					command.CommandText = "SP_Utilisateur_Delete";
-					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.CommandType = CommandType.StoredProcedure;
 
 					command.Parameters.AddWithValue(nameof(UtilisateurId), UtilisateurId);
 
@@ -135,7 +136,7 @@ namespace DAL.Services
 			}
 		}
 
-		// Update les Utilisateurs
+		// Check le MotDePasse des Utilisateurs
 		public Guid CheckPassword(string Email, string MotDePasse)
 		{
 			using (SqlConnection connection = new SqlConnection(ConnectionString))
@@ -143,7 +144,7 @@ namespace DAL.Services
 				using (SqlCommand command = connection.CreateCommand())
 				{
 					command.CommandText = "SP_Utilisateur_CheckPassword";
-					command.CommandType = System.Data.CommandType.StoredProcedure;
+					command.CommandType = CommandType.StoredProcedure;
 
 					command.Parameters.AddWithValue(nameof(Email), Email);
 					command.Parameters.AddWithValue(nameof(MotDePasse), MotDePasse);

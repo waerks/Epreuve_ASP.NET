@@ -58,6 +58,7 @@
     <Folder Include="Properties" />
     <Folder Include="Tables" />
     <Folder Include="Scripts" />
+    <Folder Include="Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Utilisateur.sql" />
@@ -66,6 +67,7 @@
     <Build Include="Tables\Jeu.sql" />
     <Build Include="Tables\Posseder.sql" />
     <Build Include="Tables\JeuTag.sql" />
+    <Build Include="Stored Procedures\StoredProcedures.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="DB.publish.xml" />

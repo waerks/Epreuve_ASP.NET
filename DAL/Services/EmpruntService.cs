@@ -10,7 +10,7 @@ namespace DAL.Services
 {
 	public class EmpruntService
 	{
-		private const string ConnectionString = @"Data Source=(localDB)\MSSQLlocalDB;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Command Timeout=0";
+		private const string ConnectionString = @"Data Source=(localDB)\MSSQLlocalDB;Initial Catalog=Epreuve-DB;Integrated Security=True;Persist Security Info=False;Pooling=False;Multiple Active Result Sets=False;Connect Timeout=60;Encrypt=False;Trust Server Certificate=False;Command Timeout=0";
 
 		// Obtenir tous les Emprunts
 		public IEnumerable<Emprunt> Get()
