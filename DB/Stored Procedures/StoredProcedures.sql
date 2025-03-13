@@ -2,13 +2,7 @@
 CREATE PROCEDURE SP_Utilisateur_GetAllActive
 AS
 BEGIN
-    SELECT 
-		UtilisateurId, 
-		Email, 
-		MotDePasse, 
-		Pseudo, 
-		DateCreation, 
-		DateDesactivation
+    SELECT UtilisateurId, Email, MotDePasse, Pseudo, DateCreation, DateDesactivation
     FROM Utilisateur
     WHERE DateDesactivation IS NULL;
 END;
@@ -16,17 +10,11 @@ GO
 
 -- SP_Utilisateur_GetByID
 CREATE PROCEDURE SP_Utilisateur_GetByID
-    @UtilisateurId UNIQUEIDENTIFIER
+    @UtilisateurId INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT 
-        UtilisateurId, 
-        Email, 
-        MotDePasse, 
-        Pseudo, 
-        DateCreation, 
-        DateDesactivation
+    SELECT UtilisateurId, Email, MotDePasse, Pseudo, DateCreation, DateDesactivation
     FROM Utilisateur
     WHERE UtilisateurId = @UtilisateurId;
 END;
@@ -42,19 +30,15 @@ CREATE PROCEDURE SP_Utilisateur_Insert
 AS
 BEGIN
     SET NOCOUNT ON;
-
-    DECLARE @NewId UNIQUEIDENTIFIER = NEWID();
-
-    INSERT INTO Utilisateur (UtilisateurId, Email, MotDePasse, Pseudo, DateCreation, DateDesactivation)
-    VALUES (@NewId, @Email, @MotDePasse, @Pseudo, @DateCreation, @DateDesactivation);
-
-    SELECT @NewId;
+    INSERT INTO Utilisateur (Email, MotDePasse, Pseudo, DateCreation, DateDesactivation)
+    VALUES (@Email, @MotDePasse, @Pseudo, @DateCreation, @DateDesactivation);
+    SELECT CAST(SCOPE_IDENTITY() AS INT) AS NewUtilisateurId;
 END;
 GO
 
 -- SP_Utilisateur_Update
 CREATE PROCEDURE SP_Utilisateur_Update
-    @UtilisateurId UNIQUEIDENTIFIER,
+    @UtilisateurId INT,
     @Email VARCHAR(255),
     @MotDePasse VARCHAR(255),
     @Pseudo VARCHAR(255),
@@ -63,7 +47,6 @@ CREATE PROCEDURE SP_Utilisateur_Update
 AS
 BEGIN
     SET NOCOUNT ON;
-    
     UPDATE Utilisateur
     SET Email = @Email,
         MotDePasse = @MotDePasse,
@@ -76,11 +59,10 @@ GO
 
 -- SP_Utilisateur_Delete
 CREATE PROCEDURE SP_Utilisateur_Delete
-    @UtilisateurId UNIQUEIDENTIFIER
+    @UtilisateurId INT
 AS
 BEGIN
     SET NOCOUNT ON;
-    
     DELETE FROM Utilisateur
     WHERE UtilisateurId = @UtilisateurId;
 END;
@@ -93,7 +75,6 @@ CREATE PROCEDURE SP_Utilisateur_CheckPassword
 AS
 BEGIN
     SET NOCOUNT ON;
-    
     SELECT UtilisateurId
     FROM Utilisateur
     WHERE Email = @Email AND MotDePasse = @MotDePasse;
@@ -105,17 +86,7 @@ CREATE PROCEDURE SP_Jeu_GetAll
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT 
-        JeuId, 
-        Nom, 
-        Description, 
-        AgeMin, 
-        AgeMax, 
-        NbJoueurMin, 
-        NbJoueurMax, 
-        DureeMinute, 
-        DateCreation, 
-        EnregistreurId
+    SELECT JeuId, Nom, Description, AgeMin, AgeMax, NbJoueurMin, NbJoueurMax, DureeMinute, DateCreation, EnregistreurId
     FROM Jeu;
 END;
 GO
@@ -125,10 +96,7 @@ CREATE PROCEDURE SP_Posseder_GetAll
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT 
-        UtilisateurId, 
-        JeuId, 
-        Etat
+    SELECT UtilisateurId, JeuId, Etat
     FROM Posseder;
 END;
 GO
@@ -138,15 +106,7 @@ CREATE PROCEDURE SP_Emprunt_GetAll
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT 
-        EmpruntId, 
-        PreteurId, 
-        EmprunteurId, 
-        JeuId, 
-        DateEmprunt, 
-        DateRetour, 
-        EvaluationPreteur, 
-        EvaluationEmprunteur
+    SELECT EmpruntId, PreteurId, EmprunteurId, JeuId, DateEmprunt, DateRetour, EvaluationPreteur, EvaluationEmprunteur
     FROM Emprunt;
 END;
 GO
@@ -156,9 +116,7 @@ CREATE PROCEDURE SP_Tag_GetAll
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT 
-        TagId, 
-        NomTag
+    SELECT TagId, NomTag
     FROM Tag;
 END;
 GO
@@ -168,9 +126,7 @@ CREATE PROCEDURE SP_JeuTag_GetAll
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT 
-        JeuId, 
-        TagId
+    SELECT JeuId, TagId
     FROM JeuTag;
 END;
 GO

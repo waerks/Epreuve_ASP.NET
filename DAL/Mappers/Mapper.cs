@@ -16,7 +16,7 @@ namespace DAL.Mappers
 			if (record is null) throw new ArgumentNullException(nameof(record));
 			return new Utilisateur()
 			{
-				UtilisateurId = (Guid)record[nameof(Utilisateur.UtilisateurId)],
+				UtilisateurId = (int)record[nameof(Utilisateur.UtilisateurId)],
 				Email = record[nameof(Utilisateur.Email)].ToString(),
 				MotDePasse = record[nameof(Utilisateur.MotDePasse)].ToString(),
 				Pseudo = record[nameof(Utilisateur.Pseudo)].ToString(),
@@ -62,7 +62,7 @@ namespace DAL.Mappers
 			if (record is null) throw new ArgumentNullException(nameof(record));
 			return new Emprunt()
 			{
-				EmpruntId = (Guid)record[nameof(Emprunt.EmpruntId)],
+				EmpruntId = (int)record[nameof(Emprunt.EmpruntId)],
 				PreteurId = (int)record[nameof(Emprunt.PreteurId)],
 				EmprunteurId = (int)record[nameof(Emprunt.EmprunteurId)],
 				JeuId = (int)record[nameof(Emprunt.JeuId)],

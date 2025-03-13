@@ -25,7 +25,7 @@ namespace BLL.Services
 		}
 
 		// Obtenir tous les ID Utilisateurs
-		public Utilisateur Get(Guid utilisateurId)
+		public Utilisateur Get(int utilisateurId)
 		{
 			return _service.Get(utilisateurId).ToBLL();
 		}
@@ -37,19 +37,19 @@ namespace BLL.Services
 		}
 
 		// Update les Utilisateurs
-		public void Update(Guid utilisateurId, Utilisateur utilisateur)
+		public void Update(int utilisateurId, Utilisateur utilisateur)
 		{
 			_service.Update(utilisateurId, utilisateur.ToDAL());
 		}
 
 		// Delete les Utilisateurs
-		public void Delete(Guid utilisateurId)
+		public void Delete(int utilisateurId)
 		{
 			_service.Delete(utilisateurId);
 		}
 
 		// Check le MotDePasse des Utilisateurs
-		public Guid CheckPassword(string email, string motDePasse)
+		public int CheckPassword(string email, string motDePasse)
 		{
 			return _service.CheckPassword(email, motDePasse);
 		}

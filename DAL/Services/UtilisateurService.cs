@@ -31,7 +31,7 @@ namespace DAL.Services
 						{
 							Utilisateur result = new Utilisateur()
 							{
-								UtilisateurId = (Guid)reader[nameof(Utilisateur.UtilisateurId)],
+								UtilisateurId = (int)reader[nameof(Utilisateur.UtilisateurId)],
 								Email = reader[nameof(Utilisateur.Email)].ToString(),
 								MotDePasse = "********",
 								Pseudo = reader[nameof(Utilisateur.Pseudo)].ToString(),
@@ -46,7 +46,7 @@ namespace DAL.Services
 		}
 
 		// Obtenir tous les ID Utilisateurs
-		public Utilisateur Get(Guid UtilisateurId)
+		public Utilisateur Get(int UtilisateurId)
 		{
 			using (SqlConnection connection = new SqlConnection(ConnectionString))
 			{
@@ -73,7 +73,7 @@ namespace DAL.Services
 		}
 
 		// Insérer les Utilisateurs
-		public Guid Insert(Utilisateur utilisateur)
+		public int Insert(Utilisateur utilisateur)
 		{
 			using (SqlConnection connection = new SqlConnection(ConnectionString))
 			{
@@ -89,13 +89,13 @@ namespace DAL.Services
 					command.Parameters.AddWithValue(nameof(Utilisateur.DateDesactivation), utilisateur.DateDesactivation);
 
 					connection.Open();
-					return (Guid)command.ExecuteScalar();
+					return (int)command.ExecuteScalar();
 				}
 			}
 		}
 
 		// Update les Utilisateurs
-		public void Update(Guid UtilisateurId, Utilisateur utilisateur)
+		public void Update(int UtilisateurId, Utilisateur utilisateur)
 		{
 			using (SqlConnection connection = new SqlConnection(ConnectionString))
 			{
@@ -119,7 +119,7 @@ namespace DAL.Services
 		}
 
 		// Delete les Utilisateurs
-		public void Delete(Guid UtilisateurId)
+		public void Delete(int UtilisateurId)
 		{
 			using (SqlConnection connection = new SqlConnection(ConnectionString))
 			{
@@ -137,7 +137,7 @@ namespace DAL.Services
 		}
 
 		// Check le MotDePasse des Utilisateurs
-		public Guid CheckPassword(string Email, string MotDePasse)
+		public int CheckPassword(string Email, string MotDePasse)
 		{
 			using (SqlConnection connection = new SqlConnection(ConnectionString))
 			{
@@ -150,7 +150,7 @@ namespace DAL.Services
 					command.Parameters.AddWithValue(nameof(MotDePasse), MotDePasse);
 
 					connection.Open();
-					return (Guid)command.ExecuteScalar();
+					return (int)command.ExecuteScalar();
 				}
 			}
 		}

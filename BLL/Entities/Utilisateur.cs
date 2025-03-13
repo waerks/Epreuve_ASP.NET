@@ -12,7 +12,7 @@ namespace BLL.Entities
 		private DateTime? _dateDesactivation;
 
 		// Les propriétés publiques
-		public Guid UtilisateurId { get; set; }
+		public int UtilisateurId { get; set; }
 		public string Email { get; set; }
 		public string MotDePasse { get; set; }
 		public string Pseudo { get; set; }
@@ -23,7 +23,7 @@ namespace BLL.Entities
 		}
 
 		// Le contrsucteur
-		public Utilisateur(Guid utilisateurId, string email, string motDePasse, string pseudo, DateTime dateCreation, DateTime? dateDesactivation)
+		public Utilisateur(int utilisateurId, string email, string motDePasse, string pseudo, DateTime dateCreation, DateTime? dateDesactivation)
 		{
 			UtilisateurId = utilisateurId;
 			Email = email;

@@ -6,7 +6,7 @@ namespace UI.Models.Utilisateur
 	public class UtilisateurDetail
 	{
 		[ScaffoldColumn(false)]
-		public Guid UtilisateurId { get; set; }
+		public int UtilisateurId { get; set; }
 
 		[DisplayName("Email")]
 		public string Email { get; set; }

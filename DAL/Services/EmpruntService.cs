@@ -29,7 +29,7 @@ namespace DAL.Services
 						{
 							Emprunt result = new Emprunt()
 							{
-								EmpruntId = (Guid)reader[nameof(Emprunt.EmpruntId)],
+								EmpruntId = (int)reader[nameof(Emprunt.EmpruntId)],
 								PreteurId = (int)reader[nameof(Emprunt.PreteurId)],
 								EmprunteurId = (int)reader[nameof(Emprunt.EmprunteurId)],
 								JeuId = (int)reader[nameof(Emprunt.JeuId)],

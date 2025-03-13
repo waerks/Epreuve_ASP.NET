@@ -30,7 +30,7 @@ namespace UI.Controllers
 		}
 
 		// GET: UtilisateurController/Details/5
-		public ActionResult Details(Guid id)
+		public ActionResult Details(int id)
 		{
 			try
 			{

@@ -5,7 +5,7 @@ namespace UI.Models.Utilisateur
 	public class UtilisateurListItem
 	{
 		[ScaffoldColumn(false)]
-		public Guid UtilisateurId { get; set; }
+		public int UtilisateurId { get; set; }
 
 		[Display(Name = "Email")]
 		public string Email { get; set; }

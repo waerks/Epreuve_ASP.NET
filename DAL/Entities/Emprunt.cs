@@ -8,7 +8,7 @@ namespace DAL.Entities
 {
 	public class Emprunt
 	{
-		public Guid EmpruntId { get; set; }
+		public int EmpruntId { get; set; }
 		public int PreteurId { get; set; }
 		public int EmprunteurId { get; set; }
 		public int JeuId { get; set; }
