@@ -9,10 +9,10 @@ namespace ConsoleTest
 		{
 			Console.WriteLine("Hello, World!");
 
-			UtilisateurService service = new UtilisateurService();
-			foreach (Utilisateur u in service.Get())
+			EmpruntService service = new EmpruntService();
+			foreach (Emprunt u in service.Get())
 			{
-				Console.WriteLine($"{u.UtilisateurId} : {u.Email} - {u.MotDePasse} - {u.DateCreation}");
+				Console.WriteLine($"{u.EmpruntId}");
 			}
 		}
 	}

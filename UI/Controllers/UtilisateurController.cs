@@ -1,5 +1,4 @@
 ﻿using UI.Mappers;
-using UI.Models.Utilisateur;
 using BLL.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -1,5 +1,4 @@
-﻿using UI.Models.Utilisateur;
-using BLL.Entities;
+﻿using BLL.Entities;
 
 namespace UI.Mappers
 {
@@ -27,6 +26,39 @@ namespace UI.Mappers
 				Email = utilisateur.Email,
 				Pseudo = utilisateur.Pseudo,
 				DateCreation = utilisateur.DateCreation
+			};
+		}
+
+		// Lister tous les Emprunts
+		public static EmpruntListItem ToListItem(this Emprunt emprunt)
+		{
+			return new EmpruntListItem
+			{
+				EmpruntId = emprunt.EmpruntId,
+				PreteurId = emprunt.PreteurId,
+				EmprunteurId = emprunt.EmprunteurId,
+				JeuId = emprunt.JeuId,
+				DateEmprunt = emprunt.DateEmprunt,
+				DateRetour = emprunt.DateRetour,
+				EvaluationPreteur = emprunt.EvaluationPreteur,
+				EvaluationEmprunteur = emprunt.EvaluationEmprunteur
+			};
+		}
+
+		// Lister tous les Jeux
+		public static JeuListItem ToListItem(this Jeu jeu)
+		{
+			return new JeuListItem
+			{
+				JeuName = jeu.Nom,
+				Description = jeu.Description,
+				AgeMinimum = jeu.AgeMin,
+				AgeMaximum = jeu.AgeMax,
+				NbJoueurMin = jeu.NbJoueurMin,
+				NbJoueurMax = jeu.NbJoueurMax,
+				DureeMinute = jeu.DureeMinute,
+				DateCreation = jeu.DateCreation,
+				EnregistreurId = jeu.EnregistreurId
 			};
 		}
 	}

@@ -1,0 +1,57 @@
+﻿@model IEnumerable<UI.Models.Emprunt.EmpruntListItem>
+
+@{
+	ViewData["Title"] = "Index";
+}
+<h1>Emprunt</h1>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.EmpruntId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DateEmprunt)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DateRetour)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.JeuId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.EmprunteurId)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.EmpruntId)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DateEmprunt)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DateRetour)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.JeuId)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EmprunteurId)
+				</td>
+				<td>
+					<div class="btn-group">
+						@Html.ActionLink("Edit", "Edit", null, new { id = item.EmpruntId }, new { @class = "btn btn-secondary" })
+						@Html.ActionLink("Details", "Details", null, new { id = item.EmpruntId }, new { @class = "btn btn-primary" })
+						@Html.ActionLink("Delete", "Delete", null, new { id = item.EmpruntId }, new { @class = "btn btn-danger" })
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>

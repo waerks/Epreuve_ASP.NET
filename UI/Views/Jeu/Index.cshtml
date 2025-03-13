@@ -1,0 +1,83 @@
+﻿@model IEnumerable<UI.Models.Jeu.JeuListItem>
+
+@{
+	ViewData["Title"] = "Index";
+}
+
+<h1>Jeu</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>
+				@Html.DisplayNameFor(model => model.JeuName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Description)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DateCreation)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.EnregistreurId)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.AgeMinimum)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.AgeMaximum)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.NbJoueurMin)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.NbJoueurMax)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DureeMinute)
+			</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.JeuName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Description)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DateCreation)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.EnregistreurId)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.AgeMinimum)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.AgeMaximum)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.NbJoueurMin)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.NbJoueurMax)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DureeMinute)
+				</td>
+				<td>
+					<div class="btn-group">
+						@Html.ActionLink("Edit", "Edit", null, new { id = item.JeuId }, new { @class = "btn btn-secondary" })
+						@Html.ActionLink("Details", "Details", null, new { id = item.JeuId }, new { @class = "btn btn-primary" })
+						@Html.ActionLink("Delete", "Delete", null, new { id = item.JeuId }, new { @class = "btn btn-danger" })
+					</div>
+				</td>
+			</tr>
+		}
+	</tbody>
+</table>
