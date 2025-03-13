@@ -51,6 +51,7 @@ namespace UI.Mappers
 			return new JeuListItem
 			{
 				JeuName = jeu.Nom,
+				JeuId = jeu.JeuId,
 				Description = jeu.Description,
 				AgeMinimum = jeu.AgeMin,
 				AgeMaximum = jeu.AgeMax,
@@ -59,6 +60,26 @@ namespace UI.Mappers
 				DureeMinute = jeu.DureeMinute,
 				DateCreation = jeu.DateCreation,
 				EnregistreurId = jeu.EnregistreurId
+			};
+		}
+
+		// Détail d'un Jeu
+		public static JeuDetail ToDetail(this Jeu jeu)
+		{
+			if (jeu is null) throw new ArgumentOutOfRangeException(nameof(jeu));
+			return new JeuDetail
+			{
+				JeuId = jeu.JeuId,
+				JeuName = jeu.Nom,
+				Description = jeu.Description,
+				AgeMinimum = jeu.AgeMin,
+				AgeMaximum = jeu.AgeMax,
+				NbJoueurMin = jeu.NbJoueurMin,
+				NbJoueurMax = jeu.NbJoueurMax,
+				DureeMinute = jeu.DureeMinute,
+				DateCreation = jeu.DateCreation,
+				EnregistreurId = jeu.EnregistreurId,
+				EnregistreurName = jeu.Enregistreur != null ? jeu.Enregistreur.Pseudo : "Inconnu"
 			};
 		}
 	}

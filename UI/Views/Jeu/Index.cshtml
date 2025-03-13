@@ -1,83 +1,39 @@
 ﻿@model IEnumerable<UI.Models.Jeu.JeuListItem>
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Liste des jeux";
 }
 
-<h1>Jeu</h1>
+<h1>Liste des jeux</h1>
 
-<table>
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.JeuName)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.Description)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.DateCreation)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.EnregistreurId)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.AgeMinimum)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.AgeMaximum)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.NbJoueurMin)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.NbJoueurMax)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.DureeMinute)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.JeuName)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.Description)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.DateCreation)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.EnregistreurId)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.AgeMinimum)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.AgeMaximum)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.NbJoueurMin)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.NbJoueurMax)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.DureeMinute)
-				</td>
-				<td>
-					<div class="btn-group">
-						@Html.ActionLink("Edit", "Edit", null, new { id = item.JeuId }, new { @class = "btn btn-secondary" })
-						@Html.ActionLink("Details", "Details", null, new { id = item.JeuId }, new { @class = "btn btn-primary" })
-						@Html.ActionLink("Delete", "Delete", null, new { id = item.JeuId }, new { @class = "btn btn-danger" })
-					</div>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+<div class="row">
+	@foreach (var item in Model)
+	{
+		<div class="col-md-6 col-lg-4 mb-4">
+			<div class="card h-100 shadow-lg border-0 rounded-3">
+				<div class="card-body">
+					<h5 class="card-title text-primary">🎲 @item.JeuName</h5>
+					<h6 class="card-subtitle mb-2 text-muted">
+						📝 @item.Description
+					</h6>
+					<p class="card-text">
+						👤 <strong>Enregistré par :</strong> <span class="text-info">#@item.EnregistreurId</span> <br />
+						📅 <strong>Date de création :</strong> <span class="text-success">@item.DateCreation.ToString("dd/MM/yyyy")</span> <br />
+						👶 <strong>Âge :</strong> @item.AgeMinimum+ <br />
+						🎭 <strong>Joueurs :</strong> @item.NbJoueurMin - @item.NbJoueurMax <br />
+						⏳ <strong>Durée :</strong> @(item.DureeMinute > 0 ? item.DureeMinute + " min" : "⚡ Rapide")
+					</p>
+				</div>
+				<div class="card-footer d-flex justify-content-between bg-light">
+					<a href="@Url.Action("Details", "Jeu", new { id = item.JeuId })" class="btn btn-primary btn-sm">Voir plus</a>
+					<a href="@Url.Action("Edit", "Jeu", new { id = item.JeuId })" class="btn btn-sm btn-warning">
+						Modifier
+					</a>
+					<a href="@Url.Action("Delete", "Jeu", new { id = item.JeuId })" class="btn btn-sm btn-danger">
+						Supprimer
+					</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>

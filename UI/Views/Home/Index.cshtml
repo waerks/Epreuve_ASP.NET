@@ -2,25 +2,29 @@
     <h1 class="display-4">Welcome</h1>
 </div>
 
-<form class="form-inline my-2 my-lg-0" action="@Url.Action("Search", "Jeu")" method="get">
-	<input class="form-control mr-sm-2" type="search" name="query" placeholder="Rechercher jeu ou tag" aria-label="Search" />
-	<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
+<form class="d-flex" action="@Url.Action("Search", "Jeu")" method="get">
+	<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+	<button class="btn btn-outline-success" type="submit">Rechercher</button>
 </form>
-
-@foreach (var jeu in Model)
-{
-	<div class="card w-75">
-	<div class="card-body">
-			<h5 class="card-title">@jeu.Nom</h5>
-			<h6 class="card-subtitle mb-2 text-muted">Age Min - Max</h6>
-			<p class="card-text">@jeu.AgeMin - @jeu.AgeMax</p>
-			<h6 class="card-subtitle mb-2 text-muted">Nb. Joueur Min - Max</h6>
-			<p class="card-text">@jeu.NbJoueurMin - @jeu.NbJoueurMax</p>
-			<h6 class="card-subtitle mb-2 text-muted">Description</h6>
-			<p class="card-text">@jeu.Description</p>
-			<h6 class="card-subtitle mb-2 text-muted">Temps de jeu</h6>
-			<p class="card-text">@(jeu.DureeMinute > 0 ? jeu.DureeMinute.ToString() : "N/A") mins</p>
-			<a href="#" class="btn btn-primary">Afficher</a>
+<hr>
+<div class="row">
+	@foreach (var jeu in Model)
+	{
+	<div class="col-md-6 col-lg-4 mb-4">
+		<div class="card shadow-lg border-0 rounded-3 h-100">
+			<div class="card-body">
+					<h5 class="card-title">🎲 @jeu.Nom</h5>
+					<h6 class="card-subtitle mb-2 text-muted">👶 Age : @jeu.AgeMin - @jeu.AgeMax</h6>
+					<p class="card-text">
+						🎭 <strong>Joueurs :</strong> @jeu.NbJoueurMin - @jeu.NbJoueurMax <br>
+						⏳ <strong>Temps de jeu :</strong> @(jeu.DureeMinute > 0 ? jeu.DureeMinute + " min" : "⚡ Rapide") <br>
+						📝 <strong>Description :</strong> @jeu.Description
+					</p>
+			</div>
+			<div class="card-footer bg-light d-flex justify-content-between">
+				<a href="@Url.Action("Details", "Jeu", new { id = jeu.JeuId })" class="btn btn-primary btn-sm">Voir plus</a>
+			</div>
+		</div>
 	</div>
+	}
 </div>
-}

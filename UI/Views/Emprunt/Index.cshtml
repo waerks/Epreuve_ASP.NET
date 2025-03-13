@@ -1,57 +1,34 @@
 ﻿@model IEnumerable<UI.Models.Emprunt.EmpruntListItem>
 
 @{
-	ViewData["Title"] = "Index";
+	ViewData["Title"] = "Liste des emprunts";
 }
-<h1>Emprunt</h1>
 
-<table class="table">
-	<thead>
-		<tr>
-			<th>
-				@Html.DisplayNameFor(model => model.EmpruntId)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.DateEmprunt)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.DateRetour)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.JeuId)
-			</th>
-			<th>
-				@Html.DisplayNameFor(model => model.EmprunteurId)
-			</th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td>
-					@Html.DisplayFor(modelItem => item.EmpruntId)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.DateEmprunt)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.DateRetour)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.JeuId)
-				</td>
-				<td>
-					@Html.DisplayFor(modelItem => item.EmprunteurId)
-				</td>
-				<td>
-					<div class="btn-group">
-						@Html.ActionLink("Edit", "Edit", null, new { id = item.EmpruntId }, new { @class = "btn btn-secondary" })
-						@Html.ActionLink("Details", "Details", null, new { id = item.EmpruntId }, new { @class = "btn btn-primary" })
-						@Html.ActionLink("Delete", "Delete", null, new { id = item.EmpruntId }, new { @class = "btn btn-danger" })
-					</div>
-				</td>
-			</tr>
-		}
-	</tbody>
+<h1 class="mb-4">Liste des emprunts</h1>
+
+<div class="row">
+	@foreach (var item in Model)
+	{
+		<div class="col-md-6 mb-4">
+			<div class="card h-100 shadow-sm">
+				<div class="card-body">
+					<h5 class="card-title">Emprunt #@item.EmpruntId</h5>
+					<h6 class="card-subtitle mb-2 text-muted">
+						📅 Date d'emprunt : @item.DateEmprunt.ToString("dd/MM/yyyy")
+					</h6>
+					<p class="card-text">
+						🎲 <strong>Jeu :</strong> @item.JeuId <br />
+						🏠 <strong>Emprunteur :</strong> @item.EmprunteurId <br />
+						⏳ <strong>Date de retour :</strong>
+						@(item.DateRetour.HasValue ? item.DateRetour.Value.ToString("dd/MM/yyyy") : "En cours")
+					</p>
+				</div>
+				<div class="card-footer text-center">
+					<a href="@Url.Action("Details", "Emprunt", new { id = item.EmpruntId })" class="btn btn-primary btn-sm">Détails</a>
+					<a href="@Url.Action("Edit", "Emprunt", new { id = item.EmpruntId })" class="btn btn-warning btn-sm">Modifier</a>
+					<a href="@Url.Action("Delete", "Emprunt", new { id = item.EmpruntId })" class="btn btn-danger btn-sm">Supprimer</a>
+				</div>
+			</div>
+		</div>
+	}
+</div>

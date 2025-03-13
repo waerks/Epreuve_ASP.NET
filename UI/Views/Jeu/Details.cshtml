@@ -1,0 +1,36 @@
+﻿@model UI.Models.Jeu.JeuDetail
+
+@{
+	ViewData["Title"] = Model.JeuName;
+}
+
+<div class="container mt-5">
+	<div class="row">
+		<!-- Infos principales -->
+		<div class="col-md-8">
+			<h1 class="display-4 fw-bold">🎲 @Model.JeuName</h1>
+			<p class="lead text-muted">@Model.Description</p>
+
+			<div class="game-details mt-4">
+				<h5><span class="badge bg-primary">👶 Âge : @Model.AgeMinimum - @Model.AgeMaximum</span></h5>
+				<h5><span class="badge bg-success">🎭 Joueurs : @Model.NbJoueurMin - @Model.NbJoueurMax</span></h5>
+				<h5><span class="badge bg-warning">⏳ Temps de jeu : @(Model.DureeMinute > 0 ? Model.DureeMinute + " min" : "⚡ Rapide")</span></h5>
+				<h5><span class="badge bg-dark">📅 Créé le : @Model.DateCreation.ToShortDateString()</span></h5>
+			</div>
+
+			@* <div class="mt-4"> *@
+			@* 	<h6>📜 **Tags associés :**</h6> *@
+			@* 	<div class="d-flex flex-wrap"> *@
+			@* 		@foreach (var tag in Model.Tags) *@
+			@* 		{ *@
+			@* 			<span class="badge bg-secondary me-2">#@tag</span> *@
+			@* 		} *@
+			@* 	</div> *@
+			@* </div> *@
+
+			<div class="mt-4 d-flex gap-2">
+				<a href="#" class="btn btn-outline-primary">Emprunter ce jeu</a>
+			</div>
+		</div>
+	</div>
+</div>

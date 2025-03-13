@@ -27,5 +27,22 @@ namespace UI.Controllers
 				return RedirectToAction("Error", "Home");
 			}
 		}
+
+		// GET: JeuController/Details/5
+		public ActionResult Details(int id)
+		{
+			try
+			{
+				var jeu = _jeuService.Get().FirstOrDefault(j => j.JeuId == id);
+
+				JeuDetail model = jeu.ToDetail();
+				return View(model);
+			}
+			catch
+			{
+				return RedirectToAction("Error", "Home");
+			}
+		}
+
 	}
 }
