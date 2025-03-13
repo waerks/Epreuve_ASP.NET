@@ -34,8 +34,12 @@ namespace UI.Controllers
 			try
 			{
 				var jeu = _jeuService.Get().FirstOrDefault(j => j.JeuId == id);
-
-				JeuDetail model = jeu.ToDetail();
+				if (jeu == null)
+				{
+					return NotFound();
+				}
+				var utilisateurService = new UtilisateurService();
+				JeuDetail model = jeu.ToDetail(utilisateurService);
 				return View(model);
 			}
 			catch
@@ -43,6 +47,5 @@ namespace UI.Controllers
 				return RedirectToAction("Error", "Home");
 			}
 		}
-
 	}
 }

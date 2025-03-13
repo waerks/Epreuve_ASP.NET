@@ -1,4 +1,5 @@
 ﻿using BLL.Entities;
+using BLL.Services;
 
 namespace UI.Mappers
 {
@@ -64,9 +65,12 @@ namespace UI.Mappers
 		}
 
 		// Détail d'un Jeu
-		public static JeuDetail ToDetail(this Jeu jeu)
+		public static JeuDetail ToDetail(this Jeu jeu, UtilisateurService utilisateurService)
 		{
 			if (jeu is null) throw new ArgumentOutOfRangeException(nameof(jeu));
+
+			var utilisateur = utilisateurService.Get(jeu.EnregistreurId);
+
 			return new JeuDetail
 			{
 				JeuId = jeu.JeuId,
@@ -79,7 +83,7 @@ namespace UI.Mappers
 				DureeMinute = jeu.DureeMinute,
 				DateCreation = jeu.DateCreation,
 				EnregistreurId = jeu.EnregistreurId,
-				EnregistreurName = jeu.Enregistreur != null ? jeu.Enregistreur.Pseudo : "Inconnu"
+				EnregistreurName = utilisateur != null ? utilisateur.Pseudo : "Inconnu"
 			};
 		}
 	}

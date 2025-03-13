@@ -12,6 +12,7 @@
 			<p class="lead text-muted">@Model.Description</p>
 
 			<div class="game-details mt-4">
+				<h5><span class="badge bg-info">👤 Enregistré par : @Model.EnregistreurName</span></h5>
 				<h5><span class="badge bg-primary">👶 Âge : @Model.AgeMinimum - @Model.AgeMaximum</span></h5>
 				<h5><span class="badge bg-success">🎭 Joueurs : @Model.NbJoueurMin - @Model.NbJoueurMax</span></h5>
 				<h5><span class="badge bg-warning">⏳ Temps de jeu : @(Model.DureeMinute > 0 ? Model.DureeMinute + " min" : "⚡ Rapide")</span></h5>

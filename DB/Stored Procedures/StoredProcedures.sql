@@ -86,10 +86,24 @@ CREATE PROCEDURE SP_Jeu_GetAll
 AS
 BEGIN
     SET NOCOUNT ON;
-    SELECT JeuId, Nom, Description, AgeMin, AgeMax, NbJoueurMin, NbJoueurMax, DureeMinute, DateCreation, EnregistreurId
-    FROM Jeu;
+    SELECT 
+        Jeu.JeuId,
+        Jeu.Nom,
+        Jeu.Description,
+        Jeu.AgeMin,
+        Jeu.AgeMax,
+        Jeu.NbJoueurMin,
+        Jeu.NbJoueurMax,
+        Jeu.DureeMinute,
+        Jeu.DateCreation,
+        Jeu.EnregistreurId,
+        Utilisateur.Pseudo AS EnregistreurName
+    FROM Jeu
+    INNER JOIN Utilisateur 
+        ON Jeu.EnregistreurId = Utilisateur.UtilisateurId;
 END;
 GO
+
 
 -- SP_Posseder_GetAll
 CREATE PROCEDURE SP_Posseder_GetAll
