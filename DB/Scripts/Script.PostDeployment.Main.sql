@@ -19,7 +19,6 @@ VALUES
 GO
 
 -- Insertion des Jeux
-
 INSERT INTO [dbo].[Jeu] (Nom, Description, AgeMin, AgeMax, NbJoueurMin, NbJoueurMax, DureeMinute, DateCreation, EnregistreurId)
 VALUES 
     ('Catan', 'Jeu de commerce et de construction', 10, 99, 3, 4, 90, GETDATE(), 1),
@@ -36,7 +35,6 @@ VALUES
 GO
 
 -- Insertion des Emprunts
-
 INSERT INTO [dbo].[Emprunt] (PreteurId, EmprunteurId, JeuId, DateEmprunt, DateRetour, EvaluationPreteur, EvaluationEmprunteur)
 VALUES 
     (1, 2, 1, GETDATE(), NULL, NULL, NULL),
@@ -56,7 +54,7 @@ GO
 
 -- Insertion dans JeuTag
 INSERT INTO [dbo].[JeuTag] (JeuId, TagId)
-VALUES 
+	VALUES 
     (1, 1), -- Catan : Coopératif
     (1, 4), -- Catan : Cartes (exemple)
     (2, 1), -- Pandemic : Coopératif

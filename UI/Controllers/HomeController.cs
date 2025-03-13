@@ -1,6 +1,8 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using UI.Models;
+using BLL.Services;
+using BLL.Entities;
 
 namespace UI.Controllers
 {
@@ -15,8 +17,14 @@ namespace UI.Controllers
 
         public IActionResult Index()
         {
-            return View();
-        }
+            var jeuService = new JeuService();
+
+			var jeux = jeuService.Get().ToList();
+
+			var top10Jeux = jeux.Take(10).ToList();
+
+			return View(top10Jeux);
+		}
 
         public IActionResult Privacy()
         {
