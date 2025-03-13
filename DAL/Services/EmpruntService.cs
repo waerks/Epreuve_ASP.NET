@@ -19,7 +19,7 @@ namespace DAL.Services
 			{
 				using (SqlCommand command = connection.CreateCommand())
 				{
-					command.CommandText = "SP_Emprunt_GetAllActive";
+					command.CommandText = "SP_Emprunt_GetAll";
 					command.CommandType = System.Data.CommandType.StoredProcedure;
 					connection.Open();
 
