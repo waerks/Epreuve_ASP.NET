@@ -2,16 +2,18 @@
 using BLL.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Common.Repositories;
+using BLL.Entities;
 
 namespace UI.Controllers
 {
 	public class UtilisateurController : Controller
 	{
-		private UtilisateurService _utilisateurService;
+		private readonly IUtilisateurService<Utilisateur> _utilisateurService;
 
-		public UtilisateurController()
+		public UtilisateurController(IUtilisateurService<Utilisateur> utilisateurService)
 		{
-			_utilisateurService = new UtilisateurService();
+			_utilisateurService = utilisateurService;
 		}
 
 		// GET: UtilisateurController
@@ -50,11 +52,21 @@ namespace UI.Controllers
 		// POST: UtilisateurController/Create
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public ActionResult Create(IFormCollection collection)
+		public ActionResult Create(UtilisateurCreateForm form)
 		{
 			try
 			{
-				return RedirectToAction(nameof(Index));
+				if (!form.Consent)
+					ModelState.AddModelError(nameof(form.Consent), "Vous devez accepter les conditions générales d'utilisation");
+
+				if (!ModelState.IsValid)
+					throw new ArgumentException("Modèle invalide");
+
+				Utilisateur nouvelUtilisateur = form.ToBLL();
+
+				int utilisateurId = _utilisateurService.Insert(nouvelUtilisateur);
+
+				return RedirectToAction(nameof(Details), new { id = utilisateurId });
 			}
 			catch
 			{

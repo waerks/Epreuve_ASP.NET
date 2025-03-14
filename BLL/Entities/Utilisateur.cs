@@ -21,6 +21,10 @@ namespace BLL.Entities
 		{
 			get { return _dateDesactivation is not null; } 
 		}
+		public DateTime? DateDesactivation
+		{
+			get { return _dateDesactivation; }
+		}
 
 		// Le contrsucteur
 		public Utilisateur(int utilisateurId, string email, string motDePasse, string pseudo, DateTime dateCreation, DateTime? dateDesactivation)
@@ -31,6 +35,15 @@ namespace BLL.Entities
 			Pseudo = pseudo;
 			DateCreation = dateCreation;
 			_dateDesactivation = dateDesactivation;
+		}
+
+		public Utilisateur(string email, string motDePasse, string pseudo)
+		{
+			Email = email;
+			MotDePasse = motDePasse;
+			Pseudo = pseudo;
+			DateCreation = DateTime.Now;
+			_dateDesactivation = null;
 		}
 	}
 }

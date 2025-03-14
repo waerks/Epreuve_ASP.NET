@@ -1,3 +1,5 @@
+using Common.Repositories;
+
 namespace UI
 {
     public class Program
@@ -8,8 +10,11 @@ namespace UI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+			builder.Services.AddScoped<IUtilisateurService<BLL.Entities.Utilisateur>, BLL.Services.UtilisateurService>();
 
-            var app = builder.Build();
+			builder.Services.AddScoped<IUtilisateurService<DAL.Entities.Utilisateur>, DAL.Services.UtilisateurService>();
+
+			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

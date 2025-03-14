@@ -30,6 +30,15 @@ namespace UI.Mappers
 			};
 		}
 
+		// Créer un Utilisateur
+		public static Utilisateur ToBLL(this UtilisateurCreateForm utilisateur)
+		{
+			if (utilisateur == null)
+				throw new ArgumentOutOfRangeException(nameof(utilisateur));
+
+			return new Utilisateur(utilisateur.Email, utilisateur.MotDePasse, utilisateur.Pseudo);
+		}
+
 		// Lister tous les Emprunts
 		public static EmpruntListItem ToListItem(this Emprunt emprunt)
 		{

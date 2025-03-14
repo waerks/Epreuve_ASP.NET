@@ -1,6 +1,7 @@
 ﻿using BLL.Entities;
 using BLL.Mappers;
-using D = DAL.Services;
+using D = DAL.Entities;
+using Common.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +10,17 @@ using System.Threading.Tasks;
 
 namespace BLL.Services
 {
-	public class UtilisateurService
+	public class UtilisateurService : IUtilisateurService<Utilisateur>
 	{
-		private D.UtilisateurService _service;
+		private IUtilisateurService<D.Utilisateur> _service;
 
-		public UtilisateurService()
+		public UtilisateurService(IUtilisateurService<D.Utilisateur> utilisateurService)
 		{
-			_service = new D.UtilisateurService();
+			_service = utilisateurService;
+		}
+
+		public UtilisateurService() : this(new DAL.Services.UtilisateurService())
+		{
 		}
 
 		// Obtenir tous les Utilisateurs
@@ -31,9 +36,11 @@ namespace BLL.Services
 		}
 
 		// Insérer les Utilisateurs
-		public void Insert(Utilisateur utilisateur)
+		public int Insert(Utilisateur utilisateur)
 		{
-			_service.Insert(utilisateur.ToDAL());
+			if (utilisateur == null)
+				throw new ArgumentNullException(nameof(utilisateur));
+			return _service.Insert(utilisateur.ToDAL());
 		}
 
 		// Update les Utilisateurs
