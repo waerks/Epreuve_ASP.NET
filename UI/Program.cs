@@ -14,6 +14,15 @@ namespace UI
 
 			builder.Services.AddScoped<IUtilisateurService<DAL.Entities.Utilisateur>, DAL.Services.UtilisateurService>();
 
+			builder.Services.AddDistributedMemoryCache();
+
+			builder.Services.AddSession(options =>
+			{
+				options.IdleTimeout = TimeSpan.FromMinutes(20); 
+				options.Cookie.HttpOnly = true; 
+				options.Cookie.IsEssential = true;
+			});
+
 			var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -27,7 +36,10 @@ namespace UI
             app.UseHttpsRedirection();
             app.UseRouting();
 
-            app.UseAuthorization();
+			app.UseSession();
+
+			app.UseAuthentication();
+			app.UseAuthorization();
 
             app.MapStaticAssets();
             app.MapControllerRoute(
