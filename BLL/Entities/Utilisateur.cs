@@ -45,5 +45,11 @@ namespace BLL.Entities
 			DateCreation = DateTime.Now;
 			_dateDesactivation = null;
 		}
+
+		public Utilisateur(string email, string pseudo)
+		{
+			Email = email;
+			Pseudo = pseudo;
+		}
 	}
 }

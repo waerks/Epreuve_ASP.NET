@@ -1,5 +1,6 @@
 ﻿using BLL.Entities;
 using BLL.Services;
+using UI.Models.Utilisateur;
 
 namespace UI.Mappers
 {
@@ -10,6 +11,7 @@ namespace UI.Mappers
 		{
 			return new UtilisateurListItem
 			{
+				UtilisateurId = utilisateur.UtilisateurId,
 				Email = utilisateur.Email,
 				Pseudo = utilisateur.Pseudo,
 				DateCreation = utilisateur.DateCreation
@@ -36,7 +38,25 @@ namespace UI.Mappers
 			if (utilisateur == null)
 				throw new ArgumentOutOfRangeException(nameof(utilisateur));
 
-			return new Utilisateur(utilisateur.Email, utilisateur.MotDePasse, utilisateur.Pseudo);
+			return new Utilisateur(
+				utilisateur.Email, 
+				utilisateur.MotDePasse, 
+				utilisateur.Pseudo
+				);
+		}
+
+		// Modifier un Utilisateur
+		public static UtilisateurEditForm ToEditForm(this Utilisateur utilisateur)
+		{
+			if (utilisateur == null)
+				throw new ArgumentOutOfRangeException(nameof(utilisateur));
+
+			return new UtilisateurEditForm
+			{
+				Email = utilisateur.Email,
+				Pseudo = utilisateur.Pseudo
+				// Ajoutez d'autres propriétés si nécessaire
+			};
 		}
 
 		// Lister tous les Emprunts

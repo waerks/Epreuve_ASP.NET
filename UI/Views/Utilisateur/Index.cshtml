@@ -34,9 +34,10 @@
 				</td>
 				<td>
 					<div class="btn-group">
-							 @Html.ActionLink("Edit", "Edit", null, new { id=item.UtilisateurId }, new { @class = "btn btn-secondary"})
-							 @Html.ActionLink("Details", "Details", null, new { id = item.UtilisateurId }, new { @class = "btn btn-primary" })
-							 @Html.ActionLink("Delete", "Delete", null, new { id = item.UtilisateurId }, new { @class = "btn btn-danger" })
+						@Html.ActionLink("Edit", "Edit", new { id = item.UtilisateurId }, new { @class = "btn btn-secondary" })
+						@Html.ActionLink("Details", "Details", new { id = item.UtilisateurId }, new { @class = "btn btn-primary" })
+						@Html.ActionLink("Delete", "Delete", new { id = item.UtilisateurId }, new { @class = "btn btn-danger" })
+
 					 </div>
 				</td>
 			</tr>

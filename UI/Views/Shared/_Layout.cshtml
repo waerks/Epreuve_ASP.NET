@@ -33,7 +33,7 @@
 						<a class="nav-link" href="@Url.Action("Index", "Collection")">Ma Collection</a>
 					</li>
 					<li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Utilisateur" ? "active" : "")">
-						<a class="nav-link" href="@Url.Action("Index", "Utilisateur")">Profil</a>
+						<a class="nav-link" href="@Url.Action("Index", "Utilisateur")">Utilisateurs</a>
 					</li>
 					<li class="nav-item @(ViewContext.RouteData.Values["controller"].ToString() == "Utilisateur" ? "active" : "")">
 						<a class="nav-link" href="@Url.Action("Create", "Utilisateur")">S'inscrire</a>

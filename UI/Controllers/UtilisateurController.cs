@@ -77,23 +77,20 @@ namespace UI.Controllers
 		// GET: UtilisateurController/Edit/5
 		public ActionResult Edit(int id)
 		{
-			return View();
+			try
+			{
+				Utilisateur utilisateur = _utilisateurService.Get(id);
+				UtilisateurEditForm model = utilisateur.ToEditForm();
+				return View(model);
+			}
+			catch (Exception)
+			{
+				return RedirectToAction("Error", "Home");
+			}
 		}
 
 		// POST: UtilisateurController/Edit/5
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public ActionResult Edit(int id, IFormCollection collection)
-		{
-			try
-			{
-				return RedirectToAction(nameof(Index));
-			}
-			catch
-			{
-				return View();
-			}
-		}
+
 
 		// GET: UtilisateurController/Delete/5
 		public ActionResult Delete(int id)
@@ -114,6 +111,24 @@ namespace UI.Controllers
 			{
 				return View();
 			}
+		}
+	}
+}
+
+namespace UI.Controllers
+{
+	public static class UtilisateurExtensions
+	{
+		public static UtilisateurEditForm ToEditForm(this Utilisateur utilisateur)
+		{
+			if (utilisateur == null)
+				throw new ArgumentOutOfRangeException(nameof(utilisateur));
+
+			return new UtilisateurEditForm
+			{
+				Email = utilisateur.Email,
+				Pseudo = utilisateur.Pseudo
+			};
 		}
 	}
 }
